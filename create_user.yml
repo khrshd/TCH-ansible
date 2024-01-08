@@ -1,0 +1,30 @@
+# /home/ec2-user/create_user.yml
+---
+- name: This is my first play in the first playbook (optional line)
+  hosts: private-ip
+  tasks:
+    - name: Creating a user 
+      user: # module line
+        name: developer
+        uid: 2345
+        state: present
+
+    - name: run a command
+      shell: echo 'New File' >> new_file.txt
+    - name: check the content of the file created before
+      shell: cat new_file.txt
+
+- name: This is my second play
+  hosts: private-ip # for windows for example
+  become: true
+  tasks:
+    - name: Creating a user 
+      user: # module line
+        name: tester
+        uid: 3456
+        state: present
+
+    - name: run a command
+      shell: echo 'New File of tester' >> new_file_tester.txt
+    - name: check the content of the file created before
+      shell: cat new_file_tester.txt

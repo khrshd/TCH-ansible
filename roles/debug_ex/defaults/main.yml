@@ -1,0 +1,4 @@
+# /home/ec2-user/roles/debug_ex/defaults/main.yml
+---
+# defaults file for debug_ex
+place: Inside Role

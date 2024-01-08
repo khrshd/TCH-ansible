@@ -1,0 +1,8 @@
+# /home/ec2-user/roles/debug_ex/tasks/main.yml
+---
+# tasks file for debug_ex
+- name: task in role
+  debug:
+    msg: Task in Role {{ place }}
+  notify: 
+    - handler in role

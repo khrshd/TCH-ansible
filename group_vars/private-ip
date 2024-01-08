@@ -1,0 +1,3 @@
+# /home/ec2-user/group_vars/private_ip
+place: group files
+data: 000000

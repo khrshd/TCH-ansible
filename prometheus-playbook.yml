@@ -1,0 +1,7 @@
+# /home/ec2-user/prometheus-playbook.yml
+---
+- name: Deploy Prometheus to Ubuntu Servers
+  hosts: private-ip
+  become: true
+  roles:
+    - prometheus

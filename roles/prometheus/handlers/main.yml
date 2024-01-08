@@ -1,0 +1,9 @@
+---
+# handlers file for prometheus
+# /home/ec2-user/roles/prometheus/handlers/main.yml
+- name: restart prometheus
+  become: true
+  systemd:
+    name: prometheus
+    state: restarted
+    enabled: yes

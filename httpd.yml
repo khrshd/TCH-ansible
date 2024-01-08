@@ -1,0 +1,65 @@
+# /home/ec2-user/httpd.yml
+---
+- name: Play to install and run a httpd server
+  hosts: private-ip
+
+  vars:
+    place: Play in Playbook
+    data: 
+    #  d1:
+    #    user_name: dev
+    #    user_folder: dev
+    #  d2: data2 val
+  
+  #vars_files:
+  #  - vars/variable.yml
+
+  tasks:
+
+  - name: installing httpd on our server
+    ansible.builtin.dnf:
+      name: httpd
+      state: latest
+
+  - name: create html file
+    ansible.builtin.copy:
+      dest: /var/www/html/index.html
+      content: |  #m | is for multiline comment in ansible
+        This is my HTTP server 
+        from Ansible host
+    register: outpul_val
+    
+  - name: Show var
+    debug: 
+      var: output_val
+
+  - name: starting and enabling httpd service
+    ansible.builtin.service:
+      name: httpd
+      state: started
+      enabled: true
+
+  - name: install firewalld
+    ansible.builtin.yum:
+      name: firewalld
+      state: present
+
+  - name: start firewalld 
+    ansible.builtin.service:
+      name: firewalld
+      state: started
+      enabled: true
+
+  - name: enable firewalld http
+    ansible.posix.firewalld:
+      service: http
+      state: enabled
+      permanent: true
+    notify:
+      - Restart firewall
+
+  handlers:
+    - name: Restart firewall
+      ansible.builtin.service:
+        name: firewalld
+        state: restarted 

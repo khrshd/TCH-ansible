@@ -1,0 +1,8 @@
+---
+# defaults file for prometheus
+# /home/ec2-user/roles/prometheus/defaults/main.yml
+prometheus_version: "2.27.1"
+prometheus_user: "prometheus"
+prometheus_group: "prometheus"
+prometheus_home: "/etc/prometheus"
+prometheus_url: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"

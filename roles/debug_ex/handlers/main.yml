@@ -1,0 +1,6 @@
+# /home/ec2-user/roles/debug_ex/handlers/main.yml
+---
+# handlers file for debug_ex
+- name: handler in role
+  debug:
+    msg: Handler in Role {{ place }}
